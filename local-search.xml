@@ -4,11 +4,36 @@
   
   
   <entry>
+    <title>题解：洛谷P1271</title>
+    <link href="/2025/06/24/%E9%A2%98%E8%A7%A3%EF%BC%9A%E6%B4%9B%E8%B0%B7P1271/"/>
+    <url>/2025/06/24/%E9%A2%98%E8%A7%A3%EF%BC%9A%E6%B4%9B%E8%B0%B7P1271/</url>
+    
+    <content type="html"><![CDATA[<h1>洛谷P1271题解</h1><h2 id="题目简介">题目简介</h2><p>给定一个序列$A$，将这个序列排序后输出。</p><p>$n \leq 999$，$m \leq 2000000$</p><h2 id="解题方法">解题方法</h2><p>因为数据范围使用<code>快排</code>不会<code>TLE</code>，所以直接读入数组直接<code>sort()</code>就可以了。</p><h2 id="解题代码">解题代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,m,a[<span class="hljs-number">2000005</span>];<span class="hljs-comment">//数组</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);<span class="hljs-comment">//读入</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)<br>        cin&gt;&gt;a[i];<span class="hljs-comment">//读入序列</span><br>    <span class="hljs-built_in">sort</span>(a<span class="hljs-number">+1</span>,a+m<span class="hljs-number">+1</span>);<span class="hljs-comment">//快排</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;i++)<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,a[i]);<span class="hljs-comment">//输出排序后的数列</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>题解</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>洛谷</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>题解：ABC411B</title>
     <link href="/2025/06/24/%E9%A2%98%E8%A7%A3%EF%BC%9AABC411B/"/>
     <url>/2025/06/24/%E9%A2%98%E8%A7%A3%EF%BC%9AABC411B/</url>
     
-    <content type="html"><![CDATA[<h1>题解：ABC411B</h1><h2 id="题目简介">题目简介</h2><p>给定一个序列中两项元素的差，求出两个点之间的距离。</p><h2 id="解题方法">解题方法</h2><p>因为数据范围<strong>较小</strong>，$2 \leq N \leq 50$，所以可以使用$O(n^2)$的解法也不会<code>TLE</code>。</p><p>暴力枚举$i$和$j$，然后累加就可以了。</p><h2 id="解题代码">解题代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n;<br>vector&lt;<span class="hljs-type">int</span>&gt;<span class="hljs-built_in">a</span>(<span class="hljs-number">55</span>);<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n<span class="hljs-number">-1</span>;i++)<br>        cin&gt;&gt;a[i];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n<span class="hljs-number">-1</span>;i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i<span class="hljs-number">+1</span>;j&lt;=n;j++)&#123;<br>            <span class="hljs-type">int</span> ans=<span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=i;k&lt;j;k++)<br>                ans+=a[k];<br>            cout&lt;&lt;ans&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br>        &#125;<br>        cout&lt;&lt;endl;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1>题解：ABC411B</h1><h2 id="题目简介">题目简介</h2><p>给定一个序列中两项元素的差，求出两个点之间的距离。</p><h2 id="解题方法">解题方法</h2><p>因为数据范围<strong>较小</strong>，$2 \leq N \leq 50$，所以可以使用$O(n^2)$的解法也不会<code>TLE</code>。</p><p>暴力枚举$i$和$j$，然后累加就可以了。</p><h2 id="解题代码">解题代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n;<br>vector&lt;<span class="hljs-type">int</span>&gt;<span class="hljs-built_in">a</span>(<span class="hljs-number">55</span>);<span class="hljs-comment">//序列</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    cin&gt;&gt;n;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n<span class="hljs-number">-1</span>;i++)<br>        cin&gt;&gt;a[i];<span class="hljs-comment">//读入整个序列</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n<span class="hljs-number">-1</span>;i++)&#123;<span class="hljs-comment">//暴力枚举</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i<span class="hljs-number">+1</span>;j&lt;=n;j++)&#123;<br>            <span class="hljs-type">int</span> ans=<span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=i;k&lt;j;k++)<br>                ans+=a[k];<span class="hljs-comment">//计算距离</span><br>            cout&lt;&lt;ans&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<span class="hljs-comment">//输出</span><br>        &#125;<br>        cout&lt;&lt;endl;<span class="hljs-comment">//换行</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
@@ -46,8 +71,6 @@
     <tags>
       
       <tag>AtCoder</tag>
-      
-      <tag>洛谷</tag>
       
     </tags>
     
