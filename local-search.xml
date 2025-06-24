@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>cpp</title>
+    <link href="/2025/06/24/cpp/"/>
+    <url>/2025/06/24/cpp/</url>
+    
+    <content type="html"><![CDATA[<p>$O(n^2)$</p><pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int main()&#123;return 0;&#125;**我是奶龙**</code></pre>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>a</title>
     <link href="/2025/06/24/a/"/>
     <url>/2025/06/24/a/</url>
