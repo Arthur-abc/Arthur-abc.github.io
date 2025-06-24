@@ -8,7 +8,7 @@
     <link href="/2025/06/24/cpp/"/>
     <url>/2025/06/24/cpp/</url>
     
-    <content type="html"><![CDATA[<p>$O(n^2)$</p><pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;using namespace std;int main()&#123;return 0;&#125;**我是奶龙**</code></pre>]]></content>
+    <content type="html"><![CDATA[<p>$O(n^2)$</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p><strong>我是奶龙</strong></p>]]></content>
     
     
     
