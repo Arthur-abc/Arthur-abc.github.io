@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>题解：洛谷P11853</title>
+    <link href="/2025/06/26/%E9%A2%98%E8%A7%A3%EF%BC%9A%E6%B4%9B%E8%B0%B7P11853/"/>
+    <url>/2025/06/26/%E9%A2%98%E8%A7%A3%EF%BC%9A%E6%B4%9B%E8%B0%B7P11853/</url>
+    
+    <content type="html"><![CDATA[<h1>题解：洛谷P11853</h1><h2 id="题目简介">题目简介</h2><p>有一排树苗，树苗$i$的编号是$A_i$。给定$n$个区间，每次将这个区间内的树浇一次水，最后求出浇水最多的树苗浇了几次水。</p><h2 id="解题方法">解题方法</h2><p>容易发现浇水操作就是区间加上一个数，可以使用差分解决。</p><p>可以看出这就是一个差分模板。</p><hr><h3 id="注意如果-A-0-有可能就是浇水最多的树苗">注意如果$A_0$有可能就是浇水最多的树苗</h3><h2 id="解题代码">解题代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,c[<span class="hljs-number">1000005</span>],ans=<span class="hljs-number">0</span>,sum=<span class="hljs-number">0</span>;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>        <span class="hljs-type">int</span> a,b;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;a,&amp;b);<br>        sum=<span class="hljs-built_in">max</span>(sum,b);<br>        c[a]++;<span class="hljs-comment">//差分模板</span><br>        c[b<span class="hljs-number">+1</span>]--;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=sum;i++)&#123;<span class="hljs-comment">//从0开始求前缀和</span><br>        <span class="hljs-keyword">if</span>(i!=<span class="hljs-number">0</span>)<span class="hljs-comment">//防止数组越界</span><br>            c[i]=c[i<span class="hljs-number">-1</span>]+c[i];<span class="hljs-comment">//求前缀和</span><br>        <span class="hljs-keyword">if</span>(c[i]&gt;ans)<br>            ans=c[i];<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,ans);<span class="hljs-comment">//输出</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>题解</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>差分</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>算法·理论：并查集</title>
     <link href="/2025/06/25/%E7%AE%97%E6%B3%95%C2%B7%E7%90%86%E8%AE%BA%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
     <url>/2025/06/25/%E7%AE%97%E6%B3%95%C2%B7%E7%90%86%E8%AE%BA%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86/</url>
