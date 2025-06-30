@@ -27,7 +27,7 @@
 <meta property="og:description" content="题解：洛谷P2089 题目简介 给定一个整数$n$，求出使用10个$1$到$3$的整数相加可以得到$n$的方案数和所有方案，如果不能得到$n$，输出$0$。 解题方法 $n \leq 5000$，我们可以发现所有整数相加最多是$3 \times 10&#x3D;30$，所以如果$n$超过$30$就输出$0$然后结束程序。 发现此题可以使用dfs解决，使用$f$记录当前的总和，$s$记录选择的数字，$step">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-30T09:12:46.000Z">
-<meta property="article:modified_time" content="2025-06-30T09:40:26.438Z">
+<meta property="article:modified_time" content="2025-06-30T09:42:50.000Z">
 <meta property="article:author" content="Arthur">
 <meta property="article:tag" content="枚举">
 <meta property="article:tag" content="搜索">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          452 字
+          453 字
         
       </span>
     
@@ -284,7 +284,7 @@
 <h2 id="解题方法">解题方法</h2>
 <p>$n \leq 5000$，我们可以发现所有整数相加最多是$3 \times 10=30$，所以如果$n$超过$30$就输出$0$然后结束程序。</p>
 <p>发现此题可以使用<code>dfs</code>解决，使用$f$记录当前的总和，$s$记录选择的数字，$step$记录选择了几个数字。</p>
-<p>我们可以使用数组记录方案，如果$step$等于$10$就输出方案。</p>
+<p>我们可以使用<code>a</code>数组记录方案，如果$step$等于$10$就输出方案。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> f,<span class="hljs-type">int</span> s,<span class="hljs-type">int</span> step)</span></span>&#123;<br>    a[step]=s;<span class="hljs-comment">//记录方案</span><br>    <span class="hljs-keyword">if</span>(step==<span class="hljs-number">10</span> || s&gt;<span class="hljs-number">3</span>)&#123;<br>        <span class="hljs-keyword">if</span>(f+s==n)&#123;<br>            ans++;<span class="hljs-comment">//增加方案数</span><br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-built_in">dfs</span>(f+s,<span class="hljs-number">1</span>,step<span class="hljs-number">+1</span>);<br>    <span class="hljs-built_in">dfs</span>(f+s,<span class="hljs-number">2</span>,step<span class="hljs-number">+1</span>);<br>    <span class="hljs-built_in">dfs</span>(f+s,<span class="hljs-number">3</span>,step<span class="hljs-number">+1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>但是我们发现题目要求先输出<strong>方案数</strong>，再输出<strong>方案</strong>。</p>
 <p>我们可以使用两个<code>dfs</code>函数，一个记录<strong>方案数</strong>，一个记录<strong>方案</strong>。</p>
