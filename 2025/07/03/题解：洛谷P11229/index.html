@@ -19,24 +19,24 @@
   <meta name="author" content="Arthur">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题解：洛谷P2089 题目简介 给定一个整数$n$，求出使用10个$1$到$3$的整数相加可以得到$n$的方案数和所有方案，如果不能得到$n$，输出$0$。 解题方法 $n \leq 5000$，我们可以发现所有整数相加最多是$3 \times 10&#x3D;30$，所以如果$n$超过$30$就输出$0$然后结束程序。 发现此题可以使用dfs解决，使用$f$记录当前的总和，$s$记录选择的数字，$step">
+    <meta name="description" content="题解：洛谷P11229 题目简介 给定$n$根小木棍，要求拼出一个最小的整数并且用完所有小木棍，如果没有整数满足条件，输出$-1$。 解题方法 拼出最小的整数有一下条件：  数位尽量少 消耗的小木棍尽量多 数字的首位尽量小  对于以上条件，我们可以发现拼出$8$这个数字所用的小木棍最少，需要$7$根。 于是我们尽量使用$8$拼出这个数字。  如果$n % 7&#x3D;0$，说明直接拼$n \div 7$个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="题解：洛谷P2089">
-<meta property="og:url" content="https://arthur-abc.github.io/2025/06/30/%E9%A2%98%E8%A7%A3%EF%BC%9A%E6%B4%9B%E8%B0%B7P2089/index.html">
+<meta property="og:title" content="题解：洛谷P11229">
+<meta property="og:url" content="https://arthur-abc.github.io/2025/07/03/%E9%A2%98%E8%A7%A3%EF%BC%9A%E6%B4%9B%E8%B0%B7P11229/index.html">
 <meta property="og:site_name" content="Arthur&#39;s blog">
-<meta property="og:description" content="题解：洛谷P2089 题目简介 给定一个整数$n$，求出使用10个$1$到$3$的整数相加可以得到$n$的方案数和所有方案，如果不能得到$n$，输出$0$。 解题方法 $n \leq 5000$，我们可以发现所有整数相加最多是$3 \times 10&#x3D;30$，所以如果$n$超过$30$就输出$0$然后结束程序。 发现此题可以使用dfs解决，使用$f$记录当前的总和，$s$记录选择的数字，$step">
+<meta property="og:description" content="题解：洛谷P11229 题目简介 给定$n$根小木棍，要求拼出一个最小的整数并且用完所有小木棍，如果没有整数满足条件，输出$-1$。 解题方法 拼出最小的整数有一下条件：  数位尽量少 消耗的小木棍尽量多 数字的首位尽量小  对于以上条件，我们可以发现拼出$8$这个数字所用的小木棍最少，需要$7$根。 于是我们尽量使用$8$拼出这个数字。  如果$n % 7&#x3D;0$，说明直接拼$n \div 7$个">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-06-30T09:12:46.000Z">
-<meta property="article:modified_time" content="2025-06-30T09:47:38.310Z">
+<meta property="article:published_time" content="2025-07-03T05:07:35.000Z">
+<meta property="article:modified_time" content="2025-07-03T05:33:53.114Z">
 <meta property="article:author" content="Arthur">
-<meta property="article:tag" content="枚举">
-<meta property="article:tag" content="搜索">
-<meta property="article:tag" content="递归">
+<meta property="article:tag" content="动态规划DP">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="贪心">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>题解：洛谷P2089 - Arthur&#39;s blog</title>
+  <title>题解：洛谷P11229 - Arthur&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="题解：洛谷P2089"></span>
+            <span id="subtitle" data-typed-text="题解：洛谷P11229"></span>
           
         </div>
 
@@ -213,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-06-30 17:12" pubdate>
-          2025年6月30日 下午
+        <time datetime="2025-07-03 13:07" pubdate>
+          2025年7月3日 下午
         </time>
       </span>
     
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          449 字
+          483 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          4 分钟
+          5 分钟
         
       </span>
     
@@ -273,23 +273,41 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">题解：洛谷P2089</h1>
+            <h1 id="seo-header">题解：洛谷P11229</h1>
             
             
               <div class="markdown-body">
                 
-                <h1>题解：洛谷P2089</h1>
+                <h1>题解：洛谷P11229</h1>
 <h2 id="题目简介">题目简介</h2>
-<p>给定一个整数$n$，求出使用<code>10</code>个$1$到$3$的整数相加可以得到$n$的方案数和所有方案，如果不能得到$n$，输出$0$。</p>
+<p>给定$n$根小木棍，要求拼出一个最小的整数并且用完所有小木棍，如果没有整数满足条件，输出$-1$。</p>
 <h2 id="解题方法">解题方法</h2>
-<p>$n \leq 5000$，我们可以发现所有整数相加最多是$3 \times 10=30$，所以如果$n$超过$30$就输出$0$然后结束程序。</p>
-<p>发现此题可以使用<code>dfs</code>解决，使用$f$记录当前的总和，$s$记录选择的数字，$step$记录选择了几个数字。</p>
-<p>我们可以使用<code>a</code>数组记录方案，如果$step$等于$10$就输出方案。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> f,<span class="hljs-type">int</span> s,<span class="hljs-type">int</span> step)</span></span>&#123;<br>    a[step]=s;<span class="hljs-comment">//记录方案</span><br>    <span class="hljs-keyword">if</span>(step==<span class="hljs-number">10</span> || s&gt;<span class="hljs-number">3</span>)&#123;<br>        <span class="hljs-keyword">if</span>(f+s==n)&#123;<br>            ans++;<span class="hljs-comment">//增加方案数</span><br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-built_in">dfs</span>(f+s,<span class="hljs-number">1</span>,step<span class="hljs-number">+1</span>);<br>    <span class="hljs-built_in">dfs</span>(f+s,<span class="hljs-number">2</span>,step<span class="hljs-number">+1</span>);<br>    <span class="hljs-built_in">dfs</span>(f+s,<span class="hljs-number">3</span>,step<span class="hljs-number">+1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>但是我们发现题目要求先输出<strong>方案数</strong>，再输出<strong>方案</strong>。</p>
-<p>我们可以使用两个<code>dfs</code>函数，一个记录<strong>方案数</strong>，一个记录<strong>方案</strong>。</p>
+<p>拼出最小的整数有一下条件：</p>
+<ol>
+<li>数位尽量少</li>
+<li>消耗的小木棍尽量多</li>
+<li>数字的首位尽量小</li>
+</ol>
+<p>对于以上条件，我们可以发现拼出$8$这个数字所用的小木棍最少，需要$7$根。</p>
+<p>于是我们尽量使用$8$拼出这个数字。</p>
+<blockquote>
+<p>如果$n % 7=0$，说明直接拼$n \div 7$个$8$就可以了。</p>
+</blockquote>
+<p>接下来对余数进行分类讨论。</p>
+<h3 id="n-7-1">$n % 7=1$</h3>
+<p><code>10</code>+$(n-8) \div 7$个$8$。</p>
+<h3 id="n-7-2">$n % 7=2$</h3>
+<p><code>1</code>+$(n-2) \div 7$个$8$。</p>
+<h3 id="n-7-3">$n % 7=3$</h3>
+<p><code>200</code>+$(n-17) \div 7$个$8$。</p>
+<h3 id="n-7-4">$n % 7=4$</h3>
+<p><code>20</code>+$(n-11) \div 7$个$8$。</p>
+<h3 id="n-7-5">$n % 7=5$</h3>
+<p><code>2</code>+$(n-5) \div 7$个$8$。</p>
+<h3 id="n-7-6">$n % 7=6$</h3>
+<p><code>6</code>+$(n-6) \div 7$个$8$。</p>
 <h2 id="解题代码">解题代码</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n,a[<span class="hljs-number">15</span>],ans=<span class="hljs-number">0</span>;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs1</span><span class="hljs-params">(<span class="hljs-type">int</span> f,<span class="hljs-type">int</span> s,<span class="hljs-type">int</span> step)</span></span>&#123;<span class="hljs-comment">//记录方案数</span><br>    <span class="hljs-keyword">if</span>(step==<span class="hljs-number">10</span> || s&gt;<span class="hljs-number">3</span>)&#123;<br>        <span class="hljs-keyword">if</span>(f+s==n)&#123;<br>            ans++;<span class="hljs-comment">//增加方案数</span><br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-built_in">dfs1</span>(f+s,<span class="hljs-number">1</span>,step<span class="hljs-number">+1</span>);<br>    <span class="hljs-built_in">dfs1</span>(f+s,<span class="hljs-number">2</span>,step<span class="hljs-number">+1</span>);<br>    <span class="hljs-built_in">dfs1</span>(f+s,<span class="hljs-number">3</span>,step<span class="hljs-number">+1</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs2</span><span class="hljs-params">(<span class="hljs-type">int</span> f,<span class="hljs-type">int</span> s,<span class="hljs-type">int</span> step)</span></span>&#123;<br>    a[step]=s;<span class="hljs-comment">//记录方案</span><br>    <span class="hljs-keyword">if</span>(step==<span class="hljs-number">10</span> || s&gt;<span class="hljs-number">3</span>)&#123;<br>        <span class="hljs-keyword">if</span>(f+s==n)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">10</span>;i++)<span class="hljs-comment">//输出方案</span><br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,a[i]);<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-built_in">dfs2</span>(f+s,<span class="hljs-number">1</span>,step<span class="hljs-number">+1</span>);<br>    <span class="hljs-built_in">dfs2</span>(f+s,<span class="hljs-number">2</span>,step<span class="hljs-number">+1</span>);<br>    <span class="hljs-built_in">dfs2</span>(f+s,<span class="hljs-number">3</span>,step<span class="hljs-number">+1</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>    <span class="hljs-keyword">if</span>(n&gt;<span class="hljs-number">30</span>)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;0&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-built_in">dfs1</span>(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);<br>    <span class="hljs-built_in">dfs1</span>(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>);<br>    <span class="hljs-built_in">dfs1</span>(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,ans);<span class="hljs-comment">//输出方案数</span><br>    <span class="hljs-built_in">dfs2</span>(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);<br>    <span class="hljs-built_in">dfs2</span>(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>);<br>    <span class="hljs-built_in">dfs2</span>(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> T,n;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;T);<br>    <span class="hljs-keyword">while</span>(T--)&#123;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">1</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;-1&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n==<span class="hljs-number">2</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;1&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n==<span class="hljs-number">3</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;7&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n==<span class="hljs-number">4</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;4&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n==<span class="hljs-number">5</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;2&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n==<span class="hljs-number">6</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;6&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n==<span class="hljs-number">7</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;8&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n==<span class="hljs-number">10</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;22&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n%<span class="hljs-number">7</span>==<span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n/<span class="hljs-number">7</span>;i++)<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;8&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n%<span class="hljs-number">7</span>==<span class="hljs-number">1</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;10&quot;</span>);<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=(n<span class="hljs-number">-8</span>)/<span class="hljs-number">7</span>;i++)<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;8&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n%<span class="hljs-number">7</span>==<span class="hljs-number">2</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;1&quot;</span>);<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=(n<span class="hljs-number">-2</span>)/<span class="hljs-number">7</span>;i++)<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;8&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n%<span class="hljs-number">7</span>==<span class="hljs-number">3</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;200&quot;</span>);<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=(n<span class="hljs-number">-17</span>)/<span class="hljs-number">7</span>;i++)<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;8&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n%<span class="hljs-number">7</span>==<span class="hljs-number">4</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;20&quot;</span>);<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=(n<span class="hljs-number">-11</span>)/<span class="hljs-number">7</span>;i++)<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;8&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n%<span class="hljs-number">7</span>==<span class="hljs-number">5</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;2&quot;</span>);<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=(n<span class="hljs-number">-5</span>)/<span class="hljs-number">7</span>;i++)<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;8&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(n%<span class="hljs-number">7</span>==<span class="hljs-number">6</span>)&#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;6&quot;</span>);<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=(n<span class="hljs-number">-6</span>)/<span class="hljs-number">7</span>;i++)<br>                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;8&quot;</span>);<br>        &#125;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -322,11 +340,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%9E%9A%E4%B8%BE/" class="print-no-link">#枚举</a>
+        <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92DP/" class="print-no-link">#动态规划DP</a>
       
-        <a href="/tags/%E6%90%9C%E7%B4%A2/" class="print-no-link">#搜索</a>
+        <a href="/tags/%E6%95%B0%E5%AD%A6/" class="print-no-link">#数学</a>
       
-        <a href="/tags/%E9%80%92%E5%BD%92/" class="print-no-link">#递归</a>
+        <a href="/tags/%E8%B4%AA%E5%BF%83/" class="print-no-link">#贪心</a>
       
     </div>
   
@@ -338,8 +356,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>题解：洛谷P2089</div>
-      <div>https://arthur-abc.github.io/2025/06/30/题解：洛谷P2089/</div>
+      <div>题解：洛谷P11229</div>
+      <div>https://arthur-abc.github.io/2025/07/03/题解：洛谷P11229/</div>
     </div>
     <div class="license-meta">
       
@@ -351,7 +369,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年6月30日</div>
+          <div>2025年7月3日</div>
         </div>
       
       
@@ -383,18 +401,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/07/03/%E9%A2%98%E8%A7%A3%EF%BC%9A%E6%B4%9B%E8%B0%B7P11229/" title="题解：洛谷P11229">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">题解：洛谷P11229</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/06/26/%E9%A2%98%E8%A7%A3%EF%BC%9A%E6%B4%9B%E8%B0%B7P11853/" title="题解：洛谷P11853">
-                        <span class="hidden-mobile">题解：洛谷P11853</span>
+                      <a href="/2025/06/30/%E9%A2%98%E8%A7%A3%EF%BC%9A%E6%B4%9B%E8%B0%B7P2089/" title="题解：洛谷P2089">
+                        <span class="hidden-mobile">题解：洛谷P2089</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
